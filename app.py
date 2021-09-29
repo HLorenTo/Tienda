@@ -67,4 +67,12 @@ def crud_product():
        print ("Stock product: "+ stock)
        #print ("Sale price product: "+ salePrice)
        return 'Registered product'
-   
+#Actualizar producto
+@app.route ('/updateproduct')
+def update_product():
+    old_name = "Rice"
+    new_name = "Beans"
+    old_product = products.query.filter_by(name=old_name).first()        
+    old_product.name = new_name
+    db.session.commit()
+    return "Updated sucessfully"
