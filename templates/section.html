@@ -9,5 +9,23 @@
 </head>
 <body>
     <h1>Mi tienda Misión Tic 2022</h1>
+    <form action="{{url_for('inventary')}}" method='post'>
+        <h2>Select the action</h2>
+        <div>
+            <input type="text" name="code_product" placeholder="Code_product">
+        </div>
+        <div>
+            <button>Inventary</button>
+        </div>
+     
+        <form action="{{url_for('store')}}" method='post'>
+            
+            <div>
+                <input type="text" name="code_product" placeholder="Code_user">
+            </div>
+            <div>
+                <button>Store</button>
+            </div>    
+    </form>
 </body>
 </html>

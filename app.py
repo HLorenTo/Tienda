@@ -26,6 +26,19 @@ def signup_route():
 @app.route('/section')
 def section():    
     return render_template("section.html")
+@app.route('/inventary', methods=['POST'])    
+def inventary():
+    code_product = request.form["code_product"]
+    print ("The code product is: ")
+    print(code_product)
+    return "ok"
+
+@app.route('/store', methods=['POST'])    
+def store():
+    code_product = request.form["code_product"]
+    print ("The code user is: ")
+    print(code_product)
+    return "ok"    
 #ruta de otras acciones
 @app.route('/product', methods=['GET','POST'])
 def crud_product():
