@@ -1,6 +1,9 @@
 from flask import Flask, request
-app = Flask(__name__)
+from flask_sqlalchemy import SQLAlchemy
 
+app = Flask(__name__)
+db = SQLAlchemy(app)
+#rutas de paginas
 @app.route('/home')
 def home_route():
     return 'This is the home'
@@ -12,7 +15,7 @@ def signup_route():
 @app.route('/section')
 def section():    
     return 'Section'
-
+#ruta de otras acciones
 @app.route('/product', methods=['GET','POST'])
 def crud_product():
    if request.method == 'GET':
