@@ -72,6 +72,8 @@ class newuser (db.Model):
 class user (db.Model):
     __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key=True, autoincrement = True)
+    name = db.Column(db.ForeignKey("NewUser.name"))
+    lastname = db.Column(db.ForeignKey("NewUser.lastname"))
     email = db.Column(db.String, unique = True)
     password = db.Column(db.String)
     def __init__(self, email, password):
@@ -120,9 +122,7 @@ class Output (db.Model):
     def __init__(self, iduser, purchasePrice, idSaleDetail):
         self.iduser = iduser
         self.purchasePrice = purchasePrice
-        self.unitValue = unitValue
         self.idSaleDetail = idSaleDetail
-        
 #tabla provedores
 class vendors (db.Model):
     __tablename__ = 'vendors'
@@ -150,4 +150,18 @@ class vendors (db.Model):
         self.lastnamevendor = lastnamevendor 
         self.companyvendor = companyvendor 
         self.orderday = orderday
-
+#tabla datos tienda 
+class store (db.Model):
+    __tablename__ = 'Store'
+    id = db.Column (db.Integer, primary_key = True, autoincrement = True)    
+    nameStore = db.Column (db.String)
+    ownerStore = db.Column (db.ForeignKey("User.name"))
+    telephone = db.Column (db.ForeignKey("NewUser.telephone"))
+    email = db.Column (db.ForeignKey("NewUser.email"))
+    address = db.Column (db.String)
+    def __init__(self, nameStore, ownerStore, telephone, email, address):
+        self.nameStore = nameStore
+        self.ownerStore = ownerStore
+        self.telephone = telephone
+        self.email = email
+        self.address = address
