@@ -110,10 +110,44 @@ class Saledetail (db.Model):
         self.unitValue = unitValue
         self.ivaTax = ivaTax
         self.totalValue = totalValue
-'''#tabla salida
+#tabla salida
 class Output (db.Model):
     __tablename__ = 'Output'
     id = db.Column(db.Integer, primary_key=True, autoincrement = True)
-    id_user = db.Column(db.ForeignKey("User.id"))
+    iduser = db.Column(db.ForeignKey("User.id"))
     purchasePrice = db.Column(db.ForeignKey("Input.purchasePrice"))
-    idSaleDetail = db.Column(db.ForeignKey("Saledetail.id"))'''
+    idSaleDetail = db.Column(db.ForeignKey("Saledetail.id"))
+    def __init__(self, iduser, purchasePrice, idSaleDetail):
+        self.iduser = iduser
+        self.purchasePrice = purchasePrice
+        self.unitValue = unitValue
+        self.idSaleDetail = idSaleDetail
+        
+#tabla provedores
+class vendors (db.Model):
+    __tablename__ = 'vendors'
+    id = db.Column (db.Integer, primary_key = True, autoincrement = True)    
+    name = db.Column(db.String)
+    codeProduct = db.Column(db.Integer)
+    brand = db.Column(db.String, nullable=True)
+    productType = db.Column(db.String, nullable=True)
+    admissionDate = db.Column(db.Integer)
+    measureUnit = db.Column(db.ForeignKey("products.measureUnit"))
+    rolevendor = db.Column(db.String)
+    namevendor = db.Column(db.String)
+    lastnamevendor = db.Column(db.String)
+    companyvendor = db.Column(db.String)
+    orderday = db.Column(db.String)
+    def __init__(self, name, codeProduct, brand, productType, admissionDate, measureUnit, rolevendor, namevendor, lastnamevendor, companyvendor, orderday):
+        self.name = name
+        self.codeProduct = codeProduct
+        self.brand = brand
+        self.productType = productType
+        self.admissionDate = admissionDate
+        self.measureUnit = measureUnit
+        self.rolevendor = rolevendor
+        self.namevendor = namevendor
+        self.lastnamevendor = lastnamevendor 
+        self.companyvendor = companyvendor 
+        self.orderday = orderday
+
