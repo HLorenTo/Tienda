@@ -1,17 +1,12 @@
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
-
 app = Flask(__name__)
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/mitiendadb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'some-secret-key'
-
 db = SQLAlchemy(app)
 #Importar modelos
-from models import products
-
-
+from models import products, NewUser, products
 #crear el esquema de la db
 db.create_all()
 db.session.commit()
@@ -19,19 +14,21 @@ db.session.commit()
 @app.route('/home')
 def home_route():
     return 'This is the home'
-
 @app.route('/register')
 def register():
     return render_template("register.html")
-
-@app.route('/createuser', methods=['POST'])
+@app.route('/create-user', methods=['POST'])
 def create_user():
     email = request.form["email"]
     password = request.form["password"]
-    user = User(email, password)  
-    db.session.add(user)  
+    telephone = request.form["telephone"]
+    role = request.form["role"]
+    name = request.form["name"]
+    lastname = request.form["lastname"]
+    birthDate = request.form["birthDate"]
+    newUser = NewUser(email, password, telephone, role, name, lastname, birthDate)  
+    db.session.add(newUser)  
     db.session.commit()
-    
     return "ok"
 
 @app.route('/section')
@@ -52,7 +49,7 @@ def store():
     print(code_user)
     return "Store"    
 #ruta de otras acciones
-@app.route('/product', methods=['GET','POST'])
+'''@app.route('/product', methods=['GET','POST'])
 def crud_product():
    if request.method == 'GET':
    #haga algo
@@ -60,12 +57,14 @@ def crud_product():
     #insertar porducto
     name = "Milk"
     codeProduct = 101
-    brand = "Colanta"
+    brand = "Colantasssss"
     productType = "Lacteos"
     admissionDate = 30092021
     measureUnit = "ml"
     ivaTax = 19
     stock = 10
+#    stockmin = 10
+#    amount = 30
     entry = products(name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock)
     db.session.add(entry)
     db.session.commit()
@@ -81,17 +80,41 @@ def crud_product():
        measureUnit = request_data['measureUnit']   
        ivaTax = request_data['ivaTax']   
        stock = request_data['stock']   
-       #salePrice = request_data['saleprice'] 
-       print("Name:" + name)
-       print ("Code product: "+ codeproduct)
-       print ("Brand product: "+ brand)
-       print ("Type product: "+ productType)
-       print ("Admission date product: "+ admissionDate)
-       print ("Measure unit product: "+ measureUnit)
-       print ("Iva Tax: "+ ivaTax)
-       print ("Stock product: "+ stock)
-       #print ("Sale price product: "+ salePrice)
-       return 'Registered product'
+       #stockmin = request_data['stockmin']   
+       #amount = request_data['amount']   
+       Products = products(name, codeproduct, brand, productType, admissionDate, measureUnit, ivaTax, stock)  
+       db.session.add(Products)  
+       db.session.commit()
+       return "ok"'''
+#insertar producto html
+@app.route('/newproducts')
+def newproducts():
+    return render_template("newproducts.html")
+@app.route('/create-p', methods=['POST'])
+def create_product():
+        name = request.form["name"]
+        codeproduct = request.form['codeproduct']   
+        brand = request.form['brand']   
+        productType = request.form['productType']   
+        admissionDate = request.form['admissionDate']   
+        measureUnit = request.form['measureUnit']   
+        ivaTax = request.form['ivaTax']   
+        stock = request.form['stock'] 
+       # stockmin = request.form['stockmin'] 
+      #  amount = request.form['amount'] 
+        Products = products(name, codeproduct, brand, productType, admissionDate, measureUnit, ivaTax, stock)  
+        db.session.add(Products)  
+        db.session.commit()
+        return "ok"
+
+
+
+
+
+
+
+
+
 #Actualizar producto
 @app.route ('/updateproduct')
 def update_product():

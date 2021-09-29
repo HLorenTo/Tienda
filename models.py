@@ -11,8 +11,10 @@ class products (db.Model):
     productType = db.Column(db.String, nullable=True)
     admissionDate = db.Column(db.Integer)
     measureUnit = db.Column(db.String)
-    ivaTax = db.Column(db.Boolean)
+    ivaTax = db.Column(db.Integer)
     stock = db.Column(db.Integer)
+    #stockmin = db.Column(db.Integer)
+    #amount = db.Column(db.ForeignKey("Input.amount"))
     #salePrice = db.Column(db.Integer)
 
     def __init__(self, name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock):
@@ -40,7 +42,7 @@ class inventary (db.Model):
     stock = db.Column(db.ForeignKey("products.stock"))
     stockmin = db.Column(db.Integer)
     amount = db.Column(db.ForeignKey("Input.amount"))
-    def __init__(self, name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock, amount):
+    def __init__(self, name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock, stockmin, amount):
         self.name = name
         self.codeProduct = codeProduct
         self.brand = brand
@@ -49,9 +51,10 @@ class inventary (db.Model):
         self.measureUnit = measureUnit
         self.ivaTax = ivaTax
         self.stock = stock
+        self.stockmin = stockmin
         self.amount = amount
 #tabla usuario
-class newuser (db.Model):
+class NewUser (db.Model):
     __tablename__ = 'NewUser'
     id = db.Column(db.Integer, primary_key=True, autoincrement = True)
     email = db.Column(db.String, unique = True)
@@ -62,6 +65,7 @@ class newuser (db.Model):
     lastname = db.Column(db.String)
     birthDate =db.Column(db.String)
     def __init__(self, email, password, telephone, role, name, lastname, birthDate):
+    #def __init__(self, email, password):
         self.email = email
         self.password = password
         self.telephone = telephone

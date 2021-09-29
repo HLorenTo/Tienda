@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitienda</title>
+</head>
+<body>
+    <h1> New porduct Mitienda.com</h1>
+    <form action="{{url_for('create_product')}}" method='post'>
+        <h4>Enter the porduct data</h4>
+        <div>
+            <input type="text" name="name" placeholder="name_product">
+        </div>
+        <div>
+            <input type="text" name="codeproduct" placeholder="Code_product">
+        </div>
+        <div>
+            <input type="text" name="brand" placeholder="brand_product">
+        </div>
+        <div>
+            <input type="text" name="productType" placeholder="Product_type">
+        </div>
+        <div>
+            <input type="text" name="admissionDate" placeholder="Admission_date_product">
+        </div>
+        <div>
+            <input type="text" name="measureUnit" placeholder="Measure_Unit_product">
+        </div>
+        <div>
+            <input type="text" name="ivaTax" placeholder="ivaTax_product">
+        </div>    
+        <div>
+            <input type="text" name="stock" placeholder="stock_product">
+        
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>    
+</body>
+</html>
