@@ -11,7 +11,7 @@ class products (db.Model):
     productType = db.Column(db.String, nullable=True)
     admissionDate = db.Column(db.Integer)
     measureUnit = db.Column(db.String)
-    ivaTax = db.Column(db.Integer)
+    ivaTax = db.Column(db.Boolean)
     stock = db.Column(db.Integer)
     #salePrice = db.Column(db.Integer)
 
