@@ -2,7 +2,18 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/mitiendadb'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'some-secret-key'
+
 db = SQLAlchemy(app)
+#Importar modelos
+
+from models import products
+#crear el esquema de la db
+db.create_all()
+db.session.commit()
 #rutas de paginas
 @app.route('/home')
 def home_route():
@@ -21,6 +32,18 @@ def crud_product():
    if request.method == 'GET':
    #haga algo
     print("Arrived a GEt")
+    #insertar porducto
+    name = "Rice"
+    codeProduct = 100
+    brand = "Roa"
+    productType = "Grains"
+    admissionDate = 29092021
+    measureUnit = "Kg"
+    ivaTax = 19
+    stock = 5
+    entry = products(name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock)
+    db.session.add(entry)
+    db.session.commit()
     return 'This was a get'
    elif request.method == 'POST':
        #registrar producto

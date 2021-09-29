@@ -13,9 +13,9 @@ class products (db.Model):
     measureUnit = db.Column(db.String)
     ivaTax = db.Column(db.Integer)
     stock = db.Column(db.Integer)
-    salePrice = db.Column(db.Integer)
+    #salePrice = db.Column(db.Integer)
 
-    def __init__(self, name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock, salePrice):
+    def __init__(self, name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock):
         self.name = name
         self.codeProduct = codeProduct
         self.brand = brand
@@ -24,7 +24,7 @@ class products (db.Model):
         self.measureUnit = measureUnit
         self.ivaTax = ivaTax
         self.stock = stock
-        self.salePrice = salePrice   
+     #   self.salePrice = salePrice   
 
 #tabla usuario
 class user (db.Model):
@@ -57,10 +57,10 @@ class Saledetail (db.Model):
     unitValue = db.Column(db.Integer)
     ivaTax = db.Column(db.Integer, unique = True)
     totalValue = db.Column(db.Integer, unique = True)  
-#tabla salida
+'''#tabla salida
 class Output (db.Model):
     __tablename__ = 'Output'
     id = db.Column(db.Integer, primary_key=True, autoincrement = True)
     id_user = db.Column(db.ForeignKey("User.id"))
     purchasePrice = db.Column(db.ForeignKey("Input.purchasePrice"))
-    idSaleDetail = db.Column(db.ForeignKey("Saledetail.id"))
+    idSaleDetail = db.Column(db.ForeignKey("Saledetail.id"))'''
