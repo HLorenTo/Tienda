@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -25,7 +25,7 @@ def signup_route():
 
 @app.route('/section')
 def section():    
-    return 'Section'
+    return render_template("section.html")
 #ruta de otras acciones
 @app.route('/product', methods=['GET','POST'])
 def crud_product():
