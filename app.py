@@ -9,8 +9,9 @@ app.secret_key = 'some-secret-key'
 
 db = SQLAlchemy(app)
 #Importar modelos
-
 from models import products
+
+
 #crear el esquema de la db
 db.create_all()
 db.session.commit()
@@ -19,9 +20,19 @@ db.session.commit()
 def home_route():
     return 'This is the home'
 
-@app.route('/signup')
-def signup_route():
-    return 'REGISTER'
+@app.route('/register')
+def register():
+    return render_template("register.html")
+
+@app.route('/createuser', methods=['POST'])
+def create_user():
+    email = request.form["email"]
+    password = request.form["password"]
+    user = User(email, password)  
+    db.session.add(user)  
+    db.session.commit()
+    
+    return "ok"
 
 @app.route('/section')
 def section():    
@@ -31,14 +42,15 @@ def inventary():
     code_product = request.form["code_product"]
     print ("The code product is: ")
     print(code_product)
-    return "ok"
+    #return "Inventary"
+    return render_template("inventary.html")
 
 @app.route('/store', methods=['POST'])    
 def store():
-    code_product = request.form["code_product"]
+    code_user = request.form["code_user"]
     print ("The code user is: ")
-    print(code_product)
-    return "ok"    
+    print(code_user)
+    return "Store"    
 #ruta de otras acciones
 @app.route('/product', methods=['GET','POST'])
 def crud_product():
