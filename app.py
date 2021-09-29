@@ -33,14 +33,14 @@ def crud_product():
    #haga algo
     print("Arrived a GEt")
     #insertar porducto
-    name = "Rice"
-    codeProduct = 100
-    brand = "Roa"
-    productType = "Grains"
-    admissionDate = 29092021
-    measureUnit = "Kg"
+    name = "Milk"
+    codeProduct = 101
+    brand = "Colanta"
+    productType = "Lacteos"
+    admissionDate = 30092021
+    measureUnit = "ml"
     ivaTax = 19
-    stock = 5
+    stock = 10
     entry = products(name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock)
     db.session.add(entry)
     db.session.commit()
@@ -76,3 +76,18 @@ def update_product():
     old_product.name = new_name
     db.session.commit()
     return "Updated sucessfully"
+#traer productos
+@app.route ('/getproduct')
+def get_product():
+    product = products.query.all()
+    print(product[0].name)
+    return "This are the products"
+
+#borrar producto
+@app.route ('/deleteproduct')    
+def delete_song():
+    product_name = "Milk"
+    product = products.query.filter_by(name=product_name).first()
+    db.session.delete(product)
+    db.session.commit()
+    return "Deleted porduct"
