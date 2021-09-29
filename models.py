@@ -38,6 +38,7 @@ class inventary (db.Model):
     measureUnit = db.Column(db.ForeignKey("products.measureUnit"))
     ivaTax = db.Column(db.ForeignKey("products.ivaTax"))
     stock = db.Column(db.ForeignKey("products.stock"))
+    stockmin = db.Column(db.Integer)
     amount = db.Column(db.ForeignKey("Input.amount"))
     def __init__(self, name, codeProduct, brand, productType, admissionDate, measureUnit, ivaTax, stock, amount):
         self.name = name
