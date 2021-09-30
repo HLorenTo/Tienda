@@ -10,7 +10,6 @@
 <body>
     <h1>Mi tienda Misión Tic 2022</h1>
     <form action="{{url_for('inventary')}}" method='post'>
-    <form action="{{url_for('store')}}" method='post'>    
         <h2>Select the action</h2>
         <div>
             <input type="text" name="code_product" placeholder="Code_product">
@@ -19,8 +18,7 @@
             <button>Inventary</button>
         </div>  
      
-        
-            
+        <form action="{{url_for('store')}}" method='post'></form>
             <div>
                 <input type="text" name="code_user" placeholder="Code_user">
             </div>
