@@ -1,9 +1,9 @@
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/mitiendadb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/mitiendadb'
 #DB heroku
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://lbsswvfrjcsgus:4a93f6008a92b1caff82607df718615b3ec6a88eea1d3a7f04ab6b619494543d@ec2-34-227-120-94.compute-1.amazonaws.com:5432/deu7kbrv91gm9c'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://lbsswvfrjcsgus:4a93f6008a92b1caff82607df718615b3ec6a88eea1d3a7f04ab6b619494543d@ec2-34-227-120-94.compute-1.amazonaws.com:5432/deu7kbrv91gm9c'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'some-secret-key'
 db = SQLAlchemy(app)
